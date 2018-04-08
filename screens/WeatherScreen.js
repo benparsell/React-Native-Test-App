@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 
 class WeatherScreen extends Component {
+
+  constructor(props){
+    super(props);
+    this.state = { zipCode: null}
+  }
 
     render() {
       return(
@@ -13,14 +18,26 @@ class WeatherScreen extends Component {
        <Text style= {{
          color: '#A9A8A8',
          fontWeight: 'bold',
+         marginBottom: 25,
          top: 25
+       }}>Please enter your zipCode {'\n'} </Text>
+
+       <TextInput
+        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+        onChangeText={(zipCode) => this.setState({zipCode})}
+        value={this.state.zipCode}
+      />
+
+       <Text style= {{
+         color: '#A9A8A8',
+         fontWeight: 'bold',
        }}>Please select the temperature unit {'\n'} </Text>
        <Text>{'\n'} </Text>
        <View style={styles.button}>
        <Button
          title="Celsius"
          color="#55CCFF"
-         onPress={() => this.props.navigation.navigate('CelciusScreen')}
+         onPress={() => this.props.navigation.navigate('CelciusScreen', {zipCode: this.state.zipCode})}
        />
        </View>
         <Text>{'\n'} </Text>
@@ -28,7 +45,7 @@ class WeatherScreen extends Component {
         <Button
          title="Fahrenheit"
          color="#55CCFF"
-         onPress={() => this.props.navigation.navigate('FahrenheitScreen')}
+         onPress={() => this.props.navigation.navigate('FahrenheitScreen', {zipCode: this.state.zipCode})}
        />
        </View>
        </View>

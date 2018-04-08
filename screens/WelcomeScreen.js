@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, Image } from 'react-native';
 
 class WelcomeScreen extends Component {
     render() {
@@ -12,8 +12,11 @@ class WelcomeScreen extends Component {
             style={styles.continueButton}
             title="Continue"
             color="#55CCFF"
-            onPress={() => this.props.navigation.navigate('HomeScreen')}
+            onPress={() => this.props.navigation.navigate('Home')}
           />
+        </View>
+        <View style={styles.center_logo}>
+        <Image source={require('../Images/weatherlive.png')} />
         </View>
       </View>
       );
@@ -147,6 +150,13 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     width: 100,
     height: 100,
+  },
+
+  center_logo: {
+    width: 200,
+    height: 200,
+    bottom: 310,
+    left: 35
   },
 });
 export default WelcomeScreen;

@@ -49,10 +49,14 @@ const AppNavigator = DrawerNavigator({
       drawerLabel: <Hidden />
     }},
 
-    CelciusScreen: { screen: CelciusScreen },
+    CelciusScreen: { screen: CelciusScreen, navigationOptions: {
+      drawerLabel: <Hidden />
+    }},
 
-    FahrenheitScreen: { screen: FahrenheitScreen },
-    
+    FahrenheitScreen: { screen: FahrenheitScreen, navigationOptions: {
+      drawerLabel: <Hidden />
+    }},
+
     Radar: { screen: RadarScreen },
 });
 

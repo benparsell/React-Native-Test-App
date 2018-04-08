@@ -4,11 +4,15 @@ import { StyleSheet, Text, View, Button, Image } from 'react-native';
 class CelciusScreen extends Component {
   constructor(props){
     super(props);
-    this.state ={ day1: null}
+    this.state ={
+      data: null,
+    }
   }
 
   WeatherData() {
-    fetch('http://api.wunderground.com/api/5ff84e4b92ce4f8f/forecast/q/49401.json')
+    const {state} = this.props.navigation;
+    var zipCode = state.params.zipCode;
+    fetch('http://api.wunderground.com/api/5ff84e4b92ce4f8f/forecast/q/' + zipCode + '.json')
       .then(response => response.json())
       .then(json =>  {
 
