@@ -1,61 +1,60 @@
 import React from 'react';
-import { AppRegistry, StyleSheet, Text, TextInput, Button, Image, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import { StackNavigator } from 'react-navigation';
+import { DrawerNavigator } from 'react-navigation';
 
-import axios from 'axios';
+import WelcomeScreen from './screens/WelcomeScreen';
+import LoginScreen from './screens/LoginScreen';
+import AccScreen from './screens/AccScreen';
+import SignUpScreen from './screens/SignUpScreen';
+import HomeScreen from './screens/HomeScreen';
+import HourlyScreen from './screens/HourlyScreen';
+import FiveScreen from './screens/FiveScreen';
+import ProfileScreen from './screens/ProfileScreen';
+import WeatherScreen from './screens/WeatherScreen';
+import CelciusScreen from './screens/CelciusScreen';
+import FahrenheitScreen from './screens/FahrenheitScreen';
+import RadarScreen from './screens/RadarScreen';
 
-const API_KEY = "5ff84e4b92ce4f8f";
-const DEFAULT_ZIPCODE = 49401;
+class Hidden extends React.Component {
+  render() {
+    return null;
+  }
+}
 
 export default class App extends React.Component {
-
-  constructor() {
-    super();
-    this.state = {
-      zipcode: DEFAULT_ZIPCODE,
-      temp_high: null,
-      temp_low: null,
-    }
-  }
-
-  _getForecast(zipcode)
-  {
-    const request = "http://api.wunderground.com/api/" + API_KEY + "/forecast/q/" + zipcode + ".json";
-    return axios.get(request).then( (response) => {
-        if(response.status == 200) {
-            var weather = response.data.forecast.simpleforecast.forecastday;
-            var high_temp = weather[0].high.fahrenheit;
-            var low_temp = weather[0].low.fahrenheit;
-            this.setState({temp_high: high_temp});
-            this.setState({temp_low: low_temp});
-        }
-    });
-  }
-
-  _handlePress(zip)
-  {
-    if(zip.length == 5) {
-      this.setState({zipcode: zip})
-      this._getForecast(this.state.zipcode);
-    }
-
-  }
-
   render() {
-    this._getForecast(this.state.zipcode);
-
     return (
-      <View style={styles.container}>
-        <TextInput placeholder="Enter Zipcode"
-          returnKeyLabel = {"next"}
-          onChangeText={this._handlePress.bind(this)}/>
-
-        <Text>Weather for {this.state.zipcode}</Text>
-        <Text>High: {this.state.temp_high}</Text>
-        <Text>Low: {this.state.temp_low}</Text>
-      </View>
+      <AppNavigator/>
     );
   }
 }
+
+const AppNavigator = DrawerNavigator({
+    Welcome: { screen:WelcomeScreen, navigationOptions: {
+      drawerLabel: <Hidden />
+    }},
+
+    Weather: { screen:WeatherScreen },
+
+    Home: { screen: HomeScreen },
+
+    Account: { screen: AccScreen },
+
+    Login: { screen: LoginScreen, navigationOptions: {
+      drawerLabel: <Hidden />
+    }},
+
+    Signup: { screen: SignUpScreen, navigationOptions: {
+      drawerLabel: <Hidden />
+    }},
+
+    CelciusScreen: { screen: CelciusScreen },
+
+    FahrenheitScreen: { screen: FahrenheitScreen },
+    
+    Radar: { screen: RadarScreen },
+});
 
 const styles = StyleSheet.create({
   container: {
