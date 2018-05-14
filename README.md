@@ -1,3 +1,9 @@
+## CIS 443 Weather App
+
+This app was built in a two-week sprint with a team of 3 as a introduction and test with React Native. The purpose was to build out something to be able to demo by the end of the sprint.
+
+-----------------------------------------------------------------
+
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
